@@ -53,7 +53,7 @@ ion-content {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-left: 1px solid #000;
+  border-left: 2px solid #000;
   width: 0;
   height: 20px;
   z-index: 1;
@@ -74,19 +74,14 @@ ion-content {
   position: absolute;
   top: 0;
   height: 20px;
-  border-top: 1px solid #666;
+  border-top: 2px solid #000000;
   z-index: -1;
   width: 50%;
 }
 
-.tree li li::before {
-  right: 50%;
-  border-left: 1px solid #000;
-}
-
 .tree li li::after {
-  left: 50%;
-  border-left: 1px solid #000;
+  left: 53%;
+  border-left: 2px solid #000;
 }
 
 .tree li li:only-child {
@@ -103,7 +98,7 @@ ion-content {
   border-left: 0 none;
 }
 .tree li li:last-child:not(:only-child)::before {
-   border-right: 1px solid #000;
+   border-right: 2px solid #000;
    border-radius: 0 5px 0 0;
 }
 .tree li li:first-child:not(:only-child)::after {
@@ -174,7 +169,7 @@ ion-content {
   top: 100%;
   width: 0;
   height: 20px; /* Vertical drop from parent */
-  border-left: 1px solid #000;
+  border-left: 2px solid #000000;
   z-index: -1;
 }
 
@@ -183,7 +178,7 @@ ion-content {
   position: absolute;
   bottom: 0; /* Aligned with the bottom of the parent vertical drops */
   height: 0;
-  border-top: 1px solid #000;
+  border-top: 2px solid #000000;
   z-index: -1;
   left: calc(25% + 162px); /* Start slightly right of the left parent's center area */
   right: calc(25% + 165px); /* End slightly left of the right parent's center area */
