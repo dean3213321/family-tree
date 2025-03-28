@@ -1,33 +1,50 @@
-/* Center the tree container */
+ion-content {
+  --background: url('/assets/icon/bg2.jpg') no-repeat center center / cover;
+  
+}
+
 .tree-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 20px;
   box-sizing: border-box;
+  border-radius: 10px;
+  margin: 20px;
 }
 
-/* Center the tree itself */
 .tree {
   text-align: center;
   position: relative;
+  display: inline-block;
+  width: max-content;
+  margin: 0 auto;
+  transform: scale(1.3);
+  transform-origin: top center;
 }
 
-/* Remove default UL/LI spacing */
+.tree a {
+  font-size: 14px;
+  padding: 10px 15px;
+  min-width: 120px;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+}
+
 .tree ul {
   padding: 0;
   margin: 0;
   list-style: none;
+  position: relative;
 }
 
-/* 
-  Add a vertical line in each sub-UL to connect the parent node
-  to all its children. 
-*/
 .tree ul ul {
-  position: relative;
-  padding-top: 40px; /* add space above children for the vertical line */
-  margin: 0 auto;    /* center the child nodes horizontally */
+  padding-top: 20px;
+  margin: 0 auto;
+  white-space: nowrap;
 }
 
 .tree ul ul::before {
@@ -36,102 +53,94 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #000;
   width: 0;
-  height: 20px; 
-  z-index: -1; 
+  height: 20px;
+  z-index: 1;
 }
 
-/* Each LI in the tree */
 .tree li {
   display: inline-block;
   text-align: center;
   vertical-align: top;
   position: relative;
-  padding: 20px 15px 0 15px;
+  padding: 20px 5px 0 5px;
   box-sizing: border-box;
 }
 
-/* 
-  Horizontal connectors that go from the midpoint of the parent
-  to the midpoint of each child. 
-*/
-.tree li::before,
-.tree li::after {
+.tree li li::before,
+.tree li li::after {
   content: '';
   position: absolute;
   top: 0;
-  width: 50%;
-  height: 20px; 
-  border-top: 1px solid #ccc;
+  height: 20px;
+  border-top: 1px solid #666;
   z-index: -1;
+  width: 50%;
 }
 
-.tree li::before {
+.tree li li::before {
   right: 50%;
+  border-left: 1px solid #000;
 }
 
-.tree li::after {
+.tree li li::after {
   left: 50%;
-  border-left: 1px solid #ccc; 
+  border-left: 1px solid #000;
 }
 
-/* Hide lines if there is only one child */
-.tree li:only-child::before,
-.tree li:only-child::after {
+.tree li li:only-child {
+   padding-top: 0;
+}
+.tree li li:only-child::before,
+.tree li li:only-child::after {
   display: none;
 }
 
-.tree li:only-child {
-  padding-top: 0;
+.tree li li:first-child:not(:only-child)::before,
+.tree li li:last-child:not(:only-child)::after {
+  border-top: 0 none;
+  border-left: 0 none;
 }
-
-/* Remove unneeded lines for first/last child to prevent corner overshoot */
-.tree li:first-child::before,
-.tree li:last-child::after {
-  border: 0 none;
+.tree li li:last-child:not(:only-child)::before {
+   border-right: 1px solid #000;
+   border-radius: 0 5px 0 0;
 }
-
-.tree li:last-child::before {
-  border-right: 1px solid #ccc;
-  border-radius: 0 5px 0 0;
-}
-
-.tree li:first-child::after {
+.tree li li:first-child:not(:only-child)::after {
   border-radius: 5px 0 0 0;
 }
 
-/* Node (the box for each family member) */
 .tree a {
   position: relative;
   display: inline-block;
   text-decoration: none;
-  color: #666;
+  color: #333;
   font-family: Arial, Verdana, Tahoma;
-  font-size: 14px;
+  font-size: 12px;
   border: 1px solid #ccc;
   background: #fff;
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 5px;
-  transition: all 0.5s;
+  transition: all 0.3s;
+  min-width: 100px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Hover effect */
 .tree a:hover,
 .tree a:hover + ul li a {
-  background: #c8e4f8;
+  background: #eef;
   color: #000;
-  border: 1px solid #94a0b4;
+  border-color: #aac;
 }
 
-/* Circular placeholder for profile pictures */
 .profile-pic {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 10px;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 8px;
   border-radius: 50%;
   background-color: #eaeaea;
   overflow: hidden;
+  border: 1px solid #ddd;
 }
 
 .profile-pic img {
@@ -139,4 +148,48 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+
+.couple {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+  padding-bottom: 20px; /* Reduced padding - only need space for 1 level of connectors */
+  z-index: 1;
+}
+
+.parent {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+}
+
+.couple .parent::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  width: 0;
+  height: 20px; /* Vertical drop from parent */
+  border-left: 1px solid #000;
+  z-index: -1;
+}
+
+.couple::before {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Aligned with the bottom of the parent vertical drops */
+  height: 0;
+  border-top: 1px solid #000;
+  z-index: -1;
+  left: calc(25% + 162px); /* Start slightly right of the left parent's center area */
+  right: calc(25% + 165px); /* End slightly left of the right parent's center area */
+}
+
+.parent-node::before,
+.parent-node::after {
+   display: none !important;
 }
