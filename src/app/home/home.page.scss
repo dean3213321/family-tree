@@ -1,32 +1,49 @@
+/* Center the tree container */
+.tree-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+/* Center the tree content */
+.tree {
+  text-align: center;
+}
+
+/* Tree structure styling */
 .tree ul {
-  padding-top: 20px; 
+  padding-top: 20px;
   position: relative;
   transition: all 0.5s;
+  margin: 0 auto;
 }
 
 .tree li {
-  float: left;
+  display: inline-block;
   text-align: center;
   list-style-type: none;
   position: relative;
-  padding: 20px 5px 0 5px;
+  padding: 20px 15px 0 15px;
   transition: all 0.5s;
 }
 
-/* Draw connectors (lines) */
+/* Connector lines */
 .tree li::before,
 .tree li::after {
   content: '';
   position: absolute;
   top: 0;
-  right: 50%;
-  border-top: 1px solid #ccc;
   width: 50%;
   height: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.tree li::before {
+  right: 50%;
 }
 
 .tree li::after {
-  right: auto;
   left: 50%;
   border-left: 1px solid #ccc;
 }
@@ -54,17 +71,19 @@
   border-radius: 5px 0 0 0;
 }
 
-/* Styling for family member nodes */
+/* Family member node styling */
 .tree a {
   border: 1px solid #ccc;
-  padding: 5px 10px;
+  padding: 10px 15px;
   text-decoration: none;
   color: #666;
   font-family: Arial, Verdana, Tahoma;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-block;
   border-radius: 5px;
   transition: all 0.5s;
+  background: #fff;
+  position: relative;
 }
 
 .tree a:hover,
@@ -72,4 +91,21 @@
   background: #c8e4f8;
   color: #000;
   border: 1px solid #94a0b4;
+}
+
+/* Profile picture placeholder styling */
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background-color: #eaeaea;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
