@@ -4,39 +4,67 @@
   justify-content: center;
   align-items: flex-start;
   padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Center the tree content */
+/* Center the tree itself */
 .tree {
   text-align: center;
-}
-
-/* Tree structure styling */
-.tree ul {
-  padding-top: 20px;
   position: relative;
-  transition: all 0.5s;
-  margin: 0 auto;
 }
 
+/* Remove default UL/LI spacing */
+.tree ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* 
+  Add a vertical line in each sub-UL to connect the parent node
+  to all its children. 
+*/
+.tree ul ul {
+  position: relative;
+  padding-top: 40px; /* add space above children for the vertical line */
+  margin: 0 auto;    /* center the child nodes horizontally */
+}
+
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px; 
+  z-index: -1; 
+}
+
+/* Each LI in the tree */
 .tree li {
   display: inline-block;
   text-align: center;
-  list-style-type: none;
+  vertical-align: top;
   position: relative;
   padding: 20px 15px 0 15px;
-  transition: all 0.5s;
+  box-sizing: border-box;
 }
 
-/* Connector lines */
+/* 
+  Horizontal connectors that go from the midpoint of the parent
+  to the midpoint of each child. 
+*/
 .tree li::before,
 .tree li::after {
   content: '';
   position: absolute;
   top: 0;
   width: 50%;
-  height: 20px;
+  height: 20px; 
   border-top: 1px solid #ccc;
+  z-index: -1;
 }
 
 .tree li::before {
@@ -45,9 +73,10 @@
 
 .tree li::after {
   left: 50%;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #ccc; 
 }
 
+/* Hide lines if there is only one child */
 .tree li:only-child::before,
 .tree li:only-child::after {
   display: none;
@@ -57,6 +86,7 @@
   padding-top: 0;
 }
 
+/* Remove unneeded lines for first/last child to prevent corner overshoot */
 .tree li:first-child::before,
 .tree li:last-child::after {
   border: 0 none;
@@ -71,21 +101,22 @@
   border-radius: 5px 0 0 0;
 }
 
-/* Family member node styling */
+/* Node (the box for each family member) */
 .tree a {
-  border: 1px solid #ccc;
-  padding: 10px 15px;
+  position: relative;
+  display: inline-block;
   text-decoration: none;
   color: #666;
   font-family: Arial, Verdana, Tahoma;
   font-size: 14px;
-  display: inline-block;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px 15px;
   border-radius: 5px;
   transition: all 0.5s;
-  background: #fff;
-  position: relative;
 }
 
+/* Hover effect */
 .tree a:hover,
 .tree a:hover + ul li a {
   background: #c8e4f8;
@@ -93,7 +124,7 @@
   border: 1px solid #94a0b4;
 }
 
-/* Profile picture placeholder styling */
+/* Circular placeholder for profile pictures */
 .profile-pic {
   width: 60px;
   height: 60px;
